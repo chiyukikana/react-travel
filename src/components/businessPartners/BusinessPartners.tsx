@@ -20,7 +20,11 @@ export const BusinessPartners: React.FC = () => {
       <Divider orientation="left">
         <Typography.Title level={3}>合作企业</Typography.Title>
       </Divider>
-      <Row>
+      <Row
+        style={{
+          alignItems: "center",
+        }}
+      >
         {companies.map((c, index) => (
           <Col span={6} key={"bussiness-partner-" + index}>
             <img
