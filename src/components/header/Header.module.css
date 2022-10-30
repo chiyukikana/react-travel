@@ -1,0 +1,44 @@
+.appHeader {
+  background-color: #fff !important;
+}
+
+.topHeader {
+  height: 40px;
+  padding: 0 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.mainHeader {
+  padding: 0 6% !important;
+  background-color: #fff !important;
+  height: 60px !important;
+  line-height: 60px !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.appLogo {
+  height: 60px;
+  width: 60px;
+}
+
+.title {
+  color: #03a9f4 !important;
+  margin: 0 !important;
+}
+
+.searchInput {
+  width: 400px !important;
+  line-height: 64px;
+  margin-left: 37px;
+}
+
+.mainMenu {
+  justify-content: center;
+  background-color: #1976d2 !important;
+  color: #f5f5f5 !important;
+}

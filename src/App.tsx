@@ -1,26 +1,29 @@
 import React from "react";
-import logo from "./logo.svg";
 import styles from "./App.module.css";
+import { Header, Footer, Carousel, SideMenu } from "./components";
+import { Row, Col } from "antd";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className={styles.App}>
-      <header className={styles["App-header"]}>
-        <img src={logo} className={styles["App-logo"]} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className={styles["App-link"]}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className={styles.app}>
+      <Header />
+      <div className={styles.pageContent}>
+        <Row
+          style={{
+            marginTop: 20,
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <Col span={6}>
+            <SideMenu />
+          </Col>
+          <Col span={18}>
+            <Carousel />
+          </Col>
+        </Row>
+      </div>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
