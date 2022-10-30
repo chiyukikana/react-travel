@@ -6,6 +6,7 @@ import {
   Carousel,
   SideMenu,
   ProductCollection,
+  BusinessPartners,
 } from "./components";
 import { Row, Col, Typography } from "antd";
 import { productList1, productList2, productList3 } from "./mockups";
@@ -17,7 +18,6 @@ function App() {
   return (
     <div className={styles.app}>
       <Header />
-      {/* 页面内容 content */}
       <div className={styles.pageContent}>
         <Row style={{ marginTop: 20 }}>
           <Col span={6}>
@@ -54,6 +54,7 @@ function App() {
           sideImage={sideImage3}
           products={productList3}
         />
+        <BusinessPartners />
       </div>
       <Footer />
     </div>
