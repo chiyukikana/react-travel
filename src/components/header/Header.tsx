@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
         </div>
         <Button.Group>
           <Button>注册</Button>
-          <Button>登陆</Button>
+          <Button>登录</Button>
         </Button.Group>
       </div>
       <Layout.Header className={styles.mainHeader}>
