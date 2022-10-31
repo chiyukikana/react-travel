@@ -12,6 +12,7 @@ function App() {
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/detail/:touristRouteId" element={<DetailPage />} />
+          <Route path="*" element={<h1>404 Not Found.</h1>} />
         </Routes>
       </BrowserRouter>
     </div>
