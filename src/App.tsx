@@ -11,10 +11,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route
-            path="/detail/:touristRouteId/:other"
-            element={<DetailPage />}
-          />
+          <Route path="/detail/:touristRouteId" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
     </div>
