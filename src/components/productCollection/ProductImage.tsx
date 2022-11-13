@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, Typography } from "antd";
+import { Link } from "react-router-dom";
 
 interface PropType {
   id: string | number;
@@ -19,7 +20,7 @@ export const ProductImage: React.FC<PropType> = ({
   const src = `http://robohash.org/${id}`;
 
   return (
-    <>
+    <Link to={`/detail/${id}`}>
       {size === "large" ? (
         <Image src={src} height={285} width={490} />
       ) : (
@@ -31,6 +32,6 @@ export const ProductImage: React.FC<PropType> = ({
           ¥ {price} 起
         </Typography.Text>
       </div>
-    </>
+    </Link>
   );
 };
