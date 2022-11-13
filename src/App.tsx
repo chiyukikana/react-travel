@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./App.module.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HomePage, SignInPage, RegisterPage, DetailPage } from "./pages";
+import React from 'react'
+import styles from './App.module.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HomePage, SignInPage, RegisterPage, DetailPage } from './pages'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

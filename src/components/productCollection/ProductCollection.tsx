@@ -1,12 +1,12 @@
-import React from "react";
-import styles from "./ProductCollection.module.css";
-import { Row, Col, Divider } from "antd";
-import { ProductImage } from "./ProductImage";
+import React from 'react'
+import styles from './ProductCollection.module.css'
+import { Row, Col, Divider } from 'antd'
+import { ProductImage } from './ProductImage'
 
 interface PropsType {
-  title: JSX.Element;
-  sideImage: string;
-  products: any[];
+  title: JSX.Element
+  sideImage: string
+  products: any[]
 }
 
 export const ProductCollection: React.FC<PropsType> = ({
@@ -26,7 +26,7 @@ export const ProductCollection: React.FC<PropsType> = ({
             <Col span={12}>
               <ProductImage
                 id={products[0].id}
-                size={"large"}
+                size={'large'}
                 title={products[0].title}
                 imageSrc={products[0].touristRoutePictures[0].url}
                 price={products[0].price}
@@ -116,5 +116,5 @@ export const ProductCollection: React.FC<PropsType> = ({
         </Col>
       </Row>
     </div>
-  );
-};
+  )
+}

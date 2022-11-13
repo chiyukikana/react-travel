@@ -1,13 +1,13 @@
-import React from "react";
-import { Image, Typography } from "antd";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Image, Typography } from 'antd'
+import { Link } from 'react-router-dom'
 
 interface PropType {
-  id: string | number;
-  size: "large" | "small";
-  imageSrc: string;
-  price: string | number;
-  title: string;
+  id: string | number
+  size: 'large' | 'small'
+  imageSrc: string
+  price: string | number
+  title: string
 }
 
 export const ProductImage: React.FC<PropType> = ({
@@ -17,11 +17,11 @@ export const ProductImage: React.FC<PropType> = ({
   price,
   title,
 }) => {
-  const src = `http://robohash.org/${id}`;
+  const src = `http://robohash.org/${id}`
 
   return (
     <Link to={`/detail/${id}`}>
-      {size === "large" ? (
+      {size === 'large' ? (
         <Image src={src} height={285} width={490} />
       ) : (
         <Image src={src} height={120} width={240} />
@@ -33,5 +33,5 @@ export const ProductImage: React.FC<PropType> = ({
         </Typography.Text>
       </div>
     </Link>
-  );
-};
+  )
+}
