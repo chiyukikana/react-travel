@@ -83,7 +83,7 @@ class HeaderComponent extends React.Component<
               {t('header.register')}
             </Button>
             <Button onClick={() => navigate('/signin')}>
-              {t('hedear.signin')}
+              {t('header.signin')}
             </Button>
           </Button.Group>
         </div>
