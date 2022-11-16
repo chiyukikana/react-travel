@@ -6,9 +6,9 @@ export interface RouteComponentProps {
 }
 
 export const withRouter = Component => {
-  const Wrapper = props => {
+  // 返回一个函数式组件
+  return props => {
     const navigate = useNavigate()
     return <Component navigate={navigate} {...props} />
   }
-  return Wrapper
 }
