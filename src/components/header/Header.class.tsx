@@ -3,47 +3,53 @@ import styles from './Header.module.css'
 import logo from '../../assets/logo.svg'
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
+
 import { RouteComponentProps, withRouter } from '../../helpers/withRouter'
-import store from '../../redux/store'
-import { LanguageState } from '../../redux/language/languageReducer'
+
+import { Dispatch } from 'redux'
+import { RootState } from '../../redux/store'
+import { connect as withConnect } from 'react-redux'
 import {
   changeLanguageActionCreator,
   addLanguageActionCreator,
 } from '../../redux/language/languageActions'
+
 import { withTranslation, WithTranslation } from 'react-i18next'
 
-interface State extends LanguageState {}
+type IProps = RouteComponentProps & // react-router 映射类型
+  WithTranslation & // i18n 映射类型
+  ReturnType<typeof mapStateToProps> & // redux store 映射类型
+  ReturnType<typeof mapDispatchToProps> // redux 映射类型
 
-class HeaderComponent extends React.Component<
-  RouteComponentProps & WithTranslation,
-  State
-> {
-  constructor(props) {
-    super(props)
-    const storeState = store.getState()
-    this.state = {
-      language: storeState.language,
-      languageList: storeState.languageList,
-    }
-    store.subscribe(this.handleStoreChange)
+// 映射state到组件的props
+const mapStateToProps = (state: RootState) => {
+  return {
+    language: state.language,
+    languageList: state.languageList,
   }
+}
 
-  handleStoreChange = () => {
-    const storeState = store.getState()
-    this.setState({
-      language: storeState.language,
-      languageList: storeState.languageList,
-    })
+// 映射dispatch到组件的props
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    changeLanguage: (code: 'zh' | 'en') => {
+      const action = changeLanguageActionCreator(code)
+      dispatch(action)
+    },
+    addLanguage: (name: string, code: string) => {
+      const action = addLanguageActionCreator(name, code)
+      dispatch(action)
+    },
   }
+}
 
+class HeaderComponent extends React.Component<IProps> {
   menuClickHandler = e => {
     if (e.key === 'new') {
       // 处理新语言添加action
-      const action = addLanguageActionCreator('新语言', 'add_language')
-      store.dispatch(action)
+      this.props.addLanguage('新语言', 'add_language')
     } else {
-      const action = changeLanguageActionCreator(e.key)
-      store.dispatch(action)
+      this.props.changeLanguage(e.key)
     }
   }
 
@@ -60,7 +66,7 @@ class HeaderComponent extends React.Component<
               }}
               overlay={
                 <Menu onClick={this.menuClickHandler}>
-                  {this.state.languageList.map(l => {
+                  {this.props.languageList.map(l => {
                     return <Menu.Item key={l.code}>{l.name}</Menu.Item>
                   })}
                   <Menu.Item key={'new'}>
@@ -70,7 +76,7 @@ class HeaderComponent extends React.Component<
               }
               icon={<GlobalOutlined />}
             >
-              {this.state.language === 'zh' ? '中文' : 'English'}
+              {this.props.language === 'zh' ? '中文' : 'English'}
             </Dropdown.Button>
           </div>
           <Button.Group>
@@ -127,4 +133,7 @@ class HeaderComponent extends React.Component<
   }
 }
 
-export const Header = withTranslation()(withRouter(HeaderComponent))
+export const Header = withConnect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(withRouter(HeaderComponent)))
