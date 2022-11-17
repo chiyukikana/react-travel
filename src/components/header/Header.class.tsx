@@ -16,7 +16,7 @@ import {
 
 import { withTranslation, WithTranslation } from 'react-i18next'
 
-type IProps = RouteComponentProps & // react-router 映射类型
+type PropsType = RouteComponentProps & // react-router 映射类型
   WithTranslation & // i18n 映射类型
   ReturnType<typeof mapStateToProps> & // redux store 映射类型
   ReturnType<typeof mapDispatchToProps> // redux 映射类型
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   }
 }
 
-class HeaderComponent extends React.Component<IProps> {
+class HeaderComponent extends React.Component<PropsType> {
   menuClickHandler = e => {
     if (e.key === 'new') {
       // 处理新语言添加action
