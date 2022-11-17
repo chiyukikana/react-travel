@@ -133,6 +133,7 @@ class HeaderComponent extends React.Component<IProps> {
   }
 }
 
+// 使用connect连接组件，并将state和dispatch(action)传入到组件的props中，即组件的props可以访问state和dispatch(action)
 export const Header = withConnect(
   mapStateToProps,
   mapDispatchToProps
