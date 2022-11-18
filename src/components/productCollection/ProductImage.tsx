@@ -17,8 +17,6 @@ export const ProductImage: React.FC<PropsType> = ({
   price,
   title,
 }) => {
-  // mock的图片无法访问，所以替换为自己的。
-  imageSrc = `http://robohash.org/${id}?set=set4&size=512x512&bgset=bg1`
   return (
     <Link to={`/detail/${id}`}>
       {size === 'large' ? (
