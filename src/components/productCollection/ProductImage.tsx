@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, Typography } from 'antd'
 import { Link } from 'react-router-dom'
 
-interface PropType {
+interface PropsType {
   id: string | number
   size: 'large' | 'small'
   imageSrc: string
@@ -10,7 +10,7 @@ interface PropType {
   title: string
 }
 
-export const ProductImage: React.FC<PropType> = ({
+export const ProductImage: React.FC<PropsType> = ({
   id,
   size,
   imageSrc,
