@@ -8,7 +8,7 @@ import './index.css'
 import './i18n/configs'
 import axios from 'axios'
 
-axios.defaults.headers['x-icode'] = 'unknown-unknown-unknown'
+axios.defaults.headers['x-icode'] = process.env.REACT_APP_API_SECRET!
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
