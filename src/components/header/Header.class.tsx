@@ -24,8 +24,8 @@ type PropsType = RouteComponentProps & // react-router 映射类型
 // 映射state到组件的props
 const mapStateToProps = (state: RootState) => {
   return {
-    language: state.language,
-    languageList: state.languageList,
+    language: state.language.language,
+    languageList: state.language.languageList,
   }
 }
 

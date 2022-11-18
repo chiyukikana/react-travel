@@ -1,9 +1,9 @@
-import i18next from 'i18next'
 import {
   ADD_LANGUAGE,
   CHANGE_LANGUAGE,
   LanguageActionTypes,
 } from './languageActions'
+import i18next from 'i18next'
 
 export interface LanguageState {
   language: 'en' | 'zh'
