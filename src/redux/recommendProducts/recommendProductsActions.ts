@@ -1,3 +1,7 @@
+import { ThunkAction } from 'redux-thunk'
+import axios from 'axios'
+import { RootState } from '../store'
+
 // 正在调用推荐信息API
 export const FETCH_RECOMMEND_PRODUCTS_START = 'FETCH_RECOMMEND_PRODUCTS_START'
 // 推荐信息API调用成功
@@ -49,3 +53,19 @@ export const fetchRecommendProductFailActionCreator = (
     payload: error,
   }
 }
+
+export const getRecommendProductActionCreator =
+  (): ThunkAction<void, RootState, null, RecommendProductActionTypes> =>
+  async (dispatch, getState) => {
+    dispatch(fetchRecommendProductStartActionCreator())
+    try {
+      const { data } = await axios.get(
+        'http://123.56.149.216:8080/api/productCollections'
+      )
+      dispatch(fetchRecommendProductSuccessActionCreator(data))
+    } catch (e) {
+      if (e instanceof Error) {
+        dispatch(fetchRecommendProductFailActionCreator(e.message))
+      }
+    }
+  }

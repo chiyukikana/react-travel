@@ -13,14 +13,9 @@ import sideImage from '../../assets/images/sider_2019_12-09.png'
 import sideImage2 from '../../assets/images/sider_2019_02-04.png'
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png'
 import { withTranslation, WithTranslation } from 'react-i18next'
-import axios from 'axios'
 import { connect as withConnect } from 'react-redux'
 import { RootState } from '../../redux/store'
-import {
-  fetchRecommendProductFailActionCreator,
-  fetchRecommendProductStartActionCreator,
-  fetchRecommendProductSuccessActionCreator,
-} from '../../redux/recommendProducts/recommendProductsActions'
+import { getRecommendProductActionCreator } from '../../redux/recommendProducts/recommendProductsActions'
 
 const mapStateToProps = (state: RootState) => {
   return {
@@ -32,14 +27,8 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchStart: () => {
-      dispatch(fetchRecommendProductStartActionCreator())
-    },
-    fetchSuccess: data => {
-      dispatch(fetchRecommendProductSuccessActionCreator(data))
-    },
-    fetchFail: error => {
-      dispatch(fetchRecommendProductFailActionCreator(error))
+    getRecommendProducts: () => {
+      dispatch(getRecommendProductActionCreator())
     },
   }
 }
@@ -49,19 +38,8 @@ type PropsType = WithTranslation &
   ReturnType<typeof mapDispatchToProps>
 
 class HomePageComponent extends React.Component<PropsType> {
-  async componentDidMount() {
-    const { fetchStart, fetchSuccess, fetchFail } = this.props
-    try {
-      fetchStart()
-      const { data } = await axios.get(
-        'http://123.56.149.216:8080/api/productCollections'
-      )
-      fetchSuccess(data)
-    } catch (e) {
-      if (e instanceof Error) {
-        fetchFail(e.message)
-      }
-    }
+  componentDidMount() {
+    this.props.getRecommendProducts()
   }
 
   render() {
