@@ -14,7 +14,7 @@ import { Footer, Header, ProductComments, ProductIntro } from '../../components'
 import styles from './DetailPage.module.css'
 import { commentMockData } from './mockup'
 import { getProductDetail } from '../../redux/productDetail/slice'
-import { useAppDispatch, useSelector } from '../../redux/hooks'
+import { useDispatch, useSelector } from '../../redux/hooks'
 
 type MatchParams = {
   touristRouteId: string
@@ -28,7 +28,7 @@ export const DetailPage: React.FC = () => {
   const loading = useSelector(state => state.productDetail.loading)
   const product = useSelector(state => state.productDetail.data)
   const error = useSelector(state => state.productDetail.error)
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,21 +1,23 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 
+// middlewares
 import { changeLanguage } from './middlewares/changeLanguage'
 import { actionLog } from './middlewares/actionLog'
 
+// slices
 import { languageSlice } from './language/slice'
 import { productDetailSlice } from './productDetail/slice'
 import { recommendProductsSlice } from './recommendProducts/slice'
 
-// rootReducer 是一个约定俗成的变量名称，最好遵守！
-const rootReducer = combineReducers({
+const reducer = combineReducers({
   language: languageSlice.reducer,
   recommendProducts: recommendProductsSlice.reducer,
   productDetail: productDetailSlice.reducer,
 })
 
+// create store
 const store = configureStore({
-  reducer: rootReducer,
+  reducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(changeLanguage, actionLog),
   devTools: true,

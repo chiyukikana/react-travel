@@ -9,15 +9,15 @@ import { useNavigate } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
-import { useAppDispatch, useSelector } from '../../redux/hooks'
+import { useDispatch, useSelector } from '../../redux/hooks'
 import { languageSlice } from '../../redux/language/slice'
 
 export const Header: React.FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const dispatch = useAppDispatch()
   const language = useSelector(state => state.language.lng)
   const languageList = useSelector(state => state.language.lngList)
+  const dispatch = useDispatch()
 
   const menuClickHandler = e => {
     if (e.key === 'add_new_language') {

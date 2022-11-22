@@ -15,7 +15,7 @@ const initialState: ProductDetailState = {
 
 export const getProductDetail = createAsyncThunk(
   'productDetail/getProductDetail',
-  async (touristRouteId: string, thunkAPI) => {
+  async (touristRouteId: string) => {
     const { data } = await axios.get(
       `http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`
     )

@@ -1,10 +1,11 @@
 import {
-  useSelector as useReduxSelector,
   TypedUseSelectorHook,
-  useDispatch,
+  useSelector as useReduxSelector,
+  useDispatch as useReduxDispatch,
 } from 'react-redux'
 import { AppDispatch, RootState } from './store'
 
+// 自定义Hook
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector
 
-export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useDispatch = () => useReduxDispatch<AppDispatch>()
