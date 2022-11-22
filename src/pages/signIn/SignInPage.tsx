@@ -1,5 +1,6 @@
 import React from 'react'
+import { UserLayout } from '../../layouts/userLayout'
 
 export const SignInPage: React.FC = () => {
-  return <h1>Sign in</h1>
+  return <UserLayout>Sign In</UserLayout>
 }
