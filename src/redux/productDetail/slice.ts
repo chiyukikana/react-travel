@@ -39,7 +39,10 @@ export const productDetailSlice = createSlice({
       state.data = action.payload
       state.error = null
     },
-    [getProductDetail.rejected.type]: (state, action) => {
+    [getProductDetail.rejected.type]: (
+      state,
+      action: PayloadAction<string | null>
+    ) => {
       state.loading = false
       state.error = action.payload
     },
