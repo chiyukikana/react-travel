@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
   const languageList = useSelector(state => state.language.languageList)
 
   const menuClickHandler = e => {
-    if (e.key === 'new') {
+    if (e.key === 'add_new_language') {
       dispatch(
         languageSlice.actions.addLanguage({
           name: '新语言',
@@ -42,14 +42,21 @@ export const Header: React.FC = () => {
               marginLeft: 15,
             }}
             overlay={
-              <Menu onClick={menuClickHandler}>
-                {languageList.map(l => {
-                  return <Menu.Item key={l.code}>{l.name}</Menu.Item>
-                })}
-                <Menu.Item key={'new'}>
-                  {t('header.add_new_language')}
-                </Menu.Item>
-              </Menu>
+              <Menu
+                onClick={menuClickHandler}
+                items={[
+                  ...languageList.map(l => {
+                    return {
+                      key: l.code,
+                      label: l.name,
+                    }
+                  }),
+                  {
+                    key: 'add_new_language',
+                    label: t('header.add_new_language'),
+                  },
+                ]}
+              />
             }
             icon={<GlobalOutlined />}
           >
