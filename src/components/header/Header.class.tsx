@@ -100,6 +100,7 @@ class HeaderComponent extends React.Component<PropsType> {
           <Input.Search
             className={styles.searchInput}
             placeholder="请输入旅游目的地、主题、或关键字"
+            onSearch={keyword => navigate(`/search/${keyword}`)}
           />
         </Layout.Header>
         <Menu

@@ -8,11 +8,13 @@ import { actionLog } from './middlewares/actionLog'
 import { languageSlice } from './language/slice'
 import { productDetailSlice } from './productDetail/slice'
 import { recommendProductsSlice } from './recommendProducts/slice'
+import { productSearchSlice } from './productSearch/slice'
 
 const reducer = combineReducers({
   language: languageSlice.reducer,
   recommendProducts: recommendProductsSlice.reducer,
   productDetail: productDetailSlice.reducer,
+  productSearch: productSearchSlice.reducer,
 })
 
 // create store
