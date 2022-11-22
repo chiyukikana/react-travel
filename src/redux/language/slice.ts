@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface LanguageState {
-  language: 'en' | 'zh'
-  languageList: {
+  lng: 'en' | 'zh'
+  lngList: {
     name: string
     code: string
   }[]
 }
 
 const initialState: LanguageState = {
-  language: 'zh',
-  languageList: [
+  lng: 'zh',
+  lngList: [
     {
       name: '中文',
       code: 'zh',
@@ -27,7 +27,7 @@ export const languageSlice = createSlice({
   initialState,
   reducers: {
     changeLanguage: (state, action: PayloadAction<'zh' | 'en'>) => {
-      state.language = action.payload
+      state.lng = action.payload
     },
     addLanguage: (
       state,
@@ -36,7 +36,7 @@ export const languageSlice = createSlice({
         code: string
       }>
     ) => {
-      state.languageList.push(action.payload)
+      state.lngList.push(action.payload)
     },
   },
 })

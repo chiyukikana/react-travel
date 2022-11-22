@@ -16,8 +16,8 @@ export const Header: React.FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const language = useSelector(state => state.language.language)
-  const languageList = useSelector(state => state.language.languageList)
+  const language = useSelector(state => state.language.lng)
+  const languageList = useSelector(state => state.language.lngList)
 
   const menuClickHandler = e => {
     if (e.key === 'add_new_language') {
