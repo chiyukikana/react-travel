@@ -5,7 +5,7 @@ import { actionLog } from './middlewares/actionLog'
 
 import { languageSlice } from './language/slice'
 import { productDetailSlice } from './productDetail/slice'
-import { recommendProductsSlice } from './recommendProducts/recommendProductsSlice'
+import { recommendProductsSlice } from './recommendProducts/slice'
 
 // rootReducer 是一个约定俗成的变量名称，最好遵守！
 const rootReducer = combineReducers({

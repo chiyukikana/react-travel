@@ -17,7 +17,7 @@ import { withTranslation, WithTranslation } from 'react-i18next'
 import { connect as withConnect } from 'react-redux'
 import { RootState } from '../../redux/store'
 
-import { getRecommendProducts } from '../../redux/recommendProducts/recommendProductsSlice'
+import { getRecommendProducts } from '../../redux/recommendProducts/slice'
 
 const mapStateToProps = (state: RootState) => {
   return {
