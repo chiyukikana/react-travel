@@ -8,9 +8,11 @@ import { RouteComponentProps, withRouter } from '../../helpers/withRouter'
 
 import { Dispatch } from 'redux'
 import { RootState } from '../../redux/store'
-import { connect as withConnect } from 'react-redux'
 
 import { withTranslation, WithTranslation } from 'react-i18next'
+
+import { connect as withConnect } from 'react-redux'
+import { languageSlice } from '../../redux/language/slice'
 
 type PropsType = RouteComponentProps & // react-router 映射类型
   WithTranslation & // i18n 映射类型
@@ -29,12 +31,10 @@ const mapStateToProps = (state: RootState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     changeLanguage: (code: 'zh' | 'en') => {
-      // const action = changeLanguageActionCreator(code)
-      // dispatch(action)
+      dispatch(languageSlice.actions.changeLanguage(code))
     },
     addLanguage: (name: string, code: string) => {
-      // const action = addLanguageActionCreator(name, code)
-      // dispatch(action)
+      dispatch(languageSlice.actions.addLanguage({ name, code }))
     },
   }
 }
