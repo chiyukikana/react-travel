@@ -1,10 +1,11 @@
 import styles from './SearchPage.module.css'
 import React, { useEffect } from 'react'
 import { Spin } from 'antd'
-import { Header, Footer, FilterArea, ProductList } from '../../components'
+import { FilterArea, ProductList } from '../../components'
 import { useLocation, useParams } from 'react-router-dom'
 import { searchProduct } from '../../redux/productSearch/slice'
 import { useSelector, useDispatch } from '../../redux/hooks'
+import { MainLayout } from '../../layouts/mainLayout'
 
 type MatchParams = {
   keywords: string
@@ -55,23 +56,19 @@ export const SearchPage: React.FC = () => {
     return <div>网站出错: {error}</div>
   }
   return (
-    <>
-      <Header />
-      <div className={styles.pageContent}>
-        {/* 分类过滤器 */}
-        <div className={styles.productListContainer}>
-          <FilterArea />
-        </div>
-        {/* 产品列表 */}
-        <div className={styles.productListContainer}>
-          <ProductList
-            data={productList}
-            paging={pagination}
-            onPageChange={onPageChange}
-          />
-        </div>
+    <MainLayout>
+      {/* 分类过滤器 */}
+      <div className={styles.productListContainer}>
+        <FilterArea />
       </div>
-      <Footer />
-    </>
+      {/* 产品列表 */}
+      <div className={styles.productListContainer}>
+        <ProductList
+          data={productList}
+          paging={pagination}
+          onPageChange={onPageChange}
+        />
+      </div>
+    </MainLayout>
   )
 }
