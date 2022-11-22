@@ -9,10 +9,6 @@ import { RouteComponentProps, withRouter } from '../../helpers/withRouter'
 import { Dispatch } from 'redux'
 import { RootState } from '../../redux/store'
 import { connect as withConnect } from 'react-redux'
-import {
-  changeLanguageActionCreator,
-  addLanguageActionCreator,
-} from '../../redux/language/languageActions'
 
 import { withTranslation, WithTranslation } from 'react-i18next'
 
@@ -33,12 +29,12 @@ const mapStateToProps = (state: RootState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     changeLanguage: (code: 'zh' | 'en') => {
-      const action = changeLanguageActionCreator(code)
-      dispatch(action)
+      // const action = changeLanguageActionCreator(code)
+      // dispatch(action)
     },
     addLanguage: (name: string, code: string) => {
-      const action = addLanguageActionCreator(name, code)
-      dispatch(action)
+      // const action = addLanguageActionCreator(name, code)
+      // dispatch(action)
     },
   }
 }

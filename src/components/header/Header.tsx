@@ -1,30 +1,34 @@
 import React from 'react'
 import styles from './Header.module.css'
 import logo from '../../assets/logo.svg'
+
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
 
-import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
+import { languageSlice } from '../../redux/language/slice'
 import { useSelector } from '../../redux/hooks'
 import { useDispatch } from 'react-redux'
-
-import {
-  addLanguageActionCreator,
-  changeLanguageActionCreator,
-} from '../../redux/language/languageActions'
 
 export const Header: React.FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const language = useSelector(state => state.language.language)
   const languageList = useSelector(state => state.language.languageList)
-  const dispatch = useDispatch()
+
   const menuClickHandler = e => {
     if (e.key === 'new') {
-      dispatch(addLanguageActionCreator('新语言', 'add_language'))
+      dispatch(
+        languageSlice.actions.addLanguage({
+          name: '新语言',
+          code: 'new_language',
+        })
+      )
     } else {
-      dispatch(changeLanguageActionCreator(e.key))
+      dispatch(languageSlice.actions.changeLanguage(e.key))
     }
   }
 

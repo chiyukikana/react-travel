@@ -13,9 +13,11 @@ import sideImage from '../../assets/images/sider_2019_12-09.png'
 import sideImage2 from '../../assets/images/sider_2019_02-04.png'
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png'
 import { withTranslation, WithTranslation } from 'react-i18next'
+
 import { connect as withConnect } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { getRecommendProductActionCreator } from '../../redux/recommendProducts/recommendProductsActions'
+
+import { getRecommendProducts } from '../../redux/recommendProducts/recommendProductsSlice'
 
 const mapStateToProps = (state: RootState) => {
   return {
@@ -28,7 +30,7 @@ const mapStateToProps = (state: RootState) => {
 const mapDispatchToProps = dispatch => {
   return {
     getRecommendProducts: () => {
-      dispatch(getRecommendProductActionCreator())
+      dispatch(getRecommendProducts())
     },
   }
 }
