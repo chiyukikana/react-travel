@@ -15,8 +15,8 @@ const initialState: ProductSearchState = {
   pagination: null,
 }
 
-export const searchProduct = createAsyncThunk(
-  'productSearch/searchProduct',
+export const getSearchContent = createAsyncThunk(
+  'productSearch/getSearchContent',
   async (params: {
     keywords: string
     nextPage: string | number
@@ -39,16 +39,16 @@ export const productSearchSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [searchProduct.pending.type]: state => {
+    [getSearchContent.pending.type]: state => {
       state.loading = true
     },
-    [searchProduct.fulfilled.type]: (state, action) => {
+    [getSearchContent.fulfilled.type]: (state, action) => {
       state.loading = false
       state.data = action.payload.data
       state.pagination = action.payload.pagination
       state.error = null
     },
-    [searchProduct.rejected.type]: (
+    [getSearchContent.rejected.type]: (
       state,
       action: PayloadAction<string | null>
     ) => {

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { Spin } from 'antd'
 import { FilterArea, ProductList } from '../../components'
 import { useLocation, useParams } from 'react-router-dom'
-import { searchProduct } from '../../redux/productSearch/slice'
+import { getSearchContent } from '../../redux/productSearch/slice'
 import { useSelector, useDispatch } from '../../redux/hooks'
 import { MainLayout } from '../../layouts/mainLayout'
 
@@ -21,7 +21,7 @@ export const SearchPage: React.FC = () => {
   const location = useLocation()
   useEffect(() => {
     dispatch(
-      searchProduct({
+      getSearchContent({
         nextPage: 1,
         pageSize: 10,
         keywords: keywords ? keywords : '',
@@ -31,7 +31,7 @@ export const SearchPage: React.FC = () => {
   }, [location])
   const onPageChange = (nextPage, pageSize) => {
     dispatch(
-      searchProduct({
+      getSearchContent({
         nextPage,
         pageSize,
         keywords: keywords ? keywords : '',
