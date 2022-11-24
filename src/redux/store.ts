@@ -11,9 +11,13 @@ import { recommendProductsSlice } from './recommendProducts/slice'
 import { productSearchSlice } from './productSearch/slice'
 
 const reducer = combineReducers({
+  // 语言切换
   language: languageSlice.reducer,
+  // 推荐产品
   recommendProducts: recommendProductsSlice.reducer,
+  // 产品细节
   productDetail: productDetailSlice.reducer,
+  // 搜索产品
   productSearch: productSearchSlice.reducer,
 })
 
