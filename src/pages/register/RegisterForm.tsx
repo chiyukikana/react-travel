@@ -1,16 +1,27 @@
 import { Button, Checkbox, Form, Input } from 'antd'
 import React from 'react'
 import styles from './RegisterForm.module.css'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const RegisterForm: React.FC = () => {
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
+  const navigate = useNavigate()
+  const onFinish = async (values: any) => {
+    try {
+      console.log('Success:', values)
+      await axios.post('http://123.56.149.216:8080/auth/register', {
+        email: values.username,
+        password: values.password,
+        confirmPassword: values.confirm,
+      })
+      navigate('/signin')
+    } catch (error) {
+      alert('注册失败')
+    }
   }
-
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo)
   }
-
   return (
     <Form
       className={styles.registerForm}
@@ -23,26 +34,25 @@ export const RegisterForm: React.FC = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
+        label="用户名"
         name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[{ required: true, message: '请输入用户名！' }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label="Password"
+        label="密码"
         name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: '请输入密码！' }]}
       >
         <Input.Password />
       </Form.Item>
-
       <Form.Item
-        label="Confirm Password"
+        label="确认密码"
         name="confirm"
         hasFeedback
         rules={[
-          { required: true, message: 'Please input your confirm password!' },
+          { required: true, message: '请确认密码！' },
           ({ getFieldValue }) => ({
             validator(_rule, value) {
               if (!value || getFieldValue('password') === value) {
@@ -55,7 +65,6 @@ export const RegisterForm: React.FC = () => {
       >
         <Input.Password />
       </Form.Item>
-
       <Form.Item
         name="remember"
         valuePropName="checked"
@@ -65,7 +74,7 @@ export const RegisterForm: React.FC = () => {
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
-          Submit
+          注册
         </Button>
       </Form.Item>
     </Form>
