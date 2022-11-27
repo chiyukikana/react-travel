@@ -9,6 +9,7 @@ import { languageSlice } from './language/slice'
 import { productDetailSlice } from './productDetail/slice'
 import { recommendProductsSlice } from './recommendProducts/slice'
 import { productSearchSlice } from './productSearch/slice'
+import { userSlice } from './user/slice'
 
 const reducer = combineReducers({
   // 语言切换
@@ -19,6 +20,8 @@ const reducer = combineReducers({
   productDetail: productDetailSlice.reducer,
   // 搜索产品
   productSearch: productSearchSlice.reducer,
+  // 登录
+  user: userSlice.reducer,
 })
 
 // create store
