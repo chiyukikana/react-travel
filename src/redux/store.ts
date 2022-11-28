@@ -1,4 +1,15 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 // middlewares
 import { changeLanguage } from './middlewares/changeLanguage'
@@ -10,6 +21,12 @@ import { productDetailSlice } from './productDetail/slice'
 import { recommendProductsSlice } from './recommendProducts/slice'
 import { productSearchSlice } from './productSearch/slice'
 import { userSlice } from './user/slice'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['user'],
+}
 
 const reducer = combineReducers({
   // 语言切换
@@ -24,16 +41,24 @@ const reducer = combineReducers({
   user: userSlice.reducer,
 })
 
+const persistedReducer = persistReducer(persistConfig, reducer)
+
 // create store
 const store = configureStore({
-  reducer,
+  reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(changeLanguage, actionLog),
-  devTools: true,
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(changeLanguage, actionLog),
 })
+
+const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch
 
-export default store
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { store, persistor }
