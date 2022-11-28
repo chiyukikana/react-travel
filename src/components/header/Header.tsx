@@ -23,6 +23,7 @@ export const Header: React.FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const language = useSelector(state => state.language.lng)
+
   const languageList = useSelector(state => state.language.lngList)
   const dispatch = useDispatch()
   const jwt = useSelector(state => state.user.token)
@@ -98,7 +99,9 @@ export const Header: React.FC = () => {
               {t('header.welcome')}
               <Typography.Text strong>{username}</Typography.Text>
             </span>
-            <Button>{t('header.shoppingCart')}</Button>
+            <Button onClick={() => navigate('/shoppingCart')}>
+              {t('header.shoppingCart')}
+            </Button>
             <Button onClick={onLogout}>{t('header.signOut')}</Button>
           </Button.Group>
         ) : (

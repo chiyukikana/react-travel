@@ -25,7 +25,7 @@ import { userSlice } from './user/slice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'],
+  whitelist: ['language', 'user'],
 }
 
 const reducer = combineReducers({
