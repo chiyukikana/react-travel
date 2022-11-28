@@ -9,13 +9,16 @@ import {
   Typography,
   Anchor,
   Menu,
+  Button,
 } from 'antd'
+import { ShoppingCartOutlined } from '@ant-design/icons'
 import { ProductComments, ProductIntro } from '../../components'
 import styles from './DetailPage.module.css'
 import { commentMockData } from './mockup'
 import { getProductDetail } from '../../redux/productDetail/slice'
 import { useDispatch, useSelector } from '../../redux/hooks'
 import { MainLayout } from '../../layouts/mainLayout'
+import { addShoppingCartItem } from '../../redux/shoppingCart/slice'
 
 type MatchParams = {
   touristRouteId: string
@@ -30,6 +33,8 @@ export const DetailPage: React.FC = () => {
   const product = useSelector(state => state.productDetail.data)
   const error = useSelector(state => state.productDetail.error)
   const dispatch = useDispatch()
+  const jwt = useSelector(state => state.user.token)
+  const shoppingCartLoading = useSelector(state => state.shoppingCart.loading)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,6 +80,29 @@ export const DetailPage: React.FC = () => {
             />
           </Col>
           <Col span={11}>
+            <Button
+              icon={<ShoppingCartOutlined />}
+              style={{
+                marginTop: 50,
+                marginBottom: 30,
+                display: 'block',
+              }}
+              type="primary"
+              danger
+              loading={shoppingCartLoading}
+              onClick={() => {
+                if (jwt) {
+                  dispatch(
+                    addShoppingCartItem({
+                      jwt,
+                      touristRouteId: product.id,
+                    })
+                  )
+                }
+              }}
+            >
+              放入购物车
+            </Button>
             <RangePicker
               open
               style={{

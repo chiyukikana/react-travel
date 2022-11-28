@@ -28,6 +28,8 @@ export const Header: React.FC = () => {
   const dispatch = useDispatch()
   const jwt = useSelector(state => state.user.token)
   const [username, setUsername] = useState('')
+  const shoppingCartItems = useSelector(state => state.shoppingCart.items)
+  const shoppingCartLoading = useSelector(state => state.shoppingCart.loading)
 
   useEffect(() => {
     if (jwt !== null) {
@@ -99,8 +101,11 @@ export const Header: React.FC = () => {
               {t('header.welcome')}
               <Typography.Text strong>{username}</Typography.Text>
             </span>
-            <Button onClick={() => navigate('/shoppingCart')}>
-              {t('header.shoppingCart')}
+            <Button
+              onClick={() => navigate('/shoppingCart')}
+              loading={shoppingCartLoading}
+            >
+              {t('header.shoppingCart')}({shoppingCartItems.length})
             </Button>
             <Button onClick={onLogout}>{t('header.signOut')}</Button>
           </Button.Group>
