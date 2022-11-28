@@ -22,6 +22,7 @@ import { recommendProductsSlice } from './recommendProducts/slice'
 import { productSearchSlice } from './productSearch/slice'
 import { userSlice } from './user/slice'
 import { shoppingCartSlice } from './shoppingCart/slice'
+import { orderSlice } from './order/slice'
 
 const persistConfig = {
   key: 'root',
@@ -42,6 +43,8 @@ const reducer = combineReducers({
   user: userSlice.reducer,
   // 购物车
   shoppingCart: shoppingCartSlice.reducer,
+  // 订单页面
+  order: orderSlice.reducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

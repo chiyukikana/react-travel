@@ -51,6 +51,7 @@ export const checkout = createAsyncThunk(
   async (jwt: string) => {
     const { data } = await axios.post(
       'http://123.56.149.216:8080/api/shoppingCart/checkout',
+      null,
       {
         headers: {
           Authorization: `bearer ${jwt}`,
